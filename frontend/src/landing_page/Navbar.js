@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { DASHBOARD_URL } from "../config";
 
 const links = [
   { label: "Signup", to: "/signup" },
@@ -46,6 +47,11 @@ function Navbar() {
                 </Link>
               </li>
             ))}
+            <li className="nav-item">
+              <a className="nav-link active" href={DASHBOARD_URL}>
+                Dashboard
+              </a>
+            </li>
           </ul>
         </div>
       </div>

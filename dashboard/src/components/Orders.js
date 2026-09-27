@@ -6,13 +6,19 @@ import { API_URL } from "../config";
 const Orders = () => {
   const [orders, setOrders] = useState([]);
 
-  useEffect(() => {
-     axios
+  const fetchOrders = () => {
+    axios
       .get(`${API_URL}/allOrders`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
       .then((res) => setOrders(res.data))
       .catch((err) => console.error(err));
+  };
+
+  useEffect(() => {
+    fetchOrders();
+    window.addEventListener("orderPlaced", fetchOrders);
+    return () => window.removeEventListener("orderPlaced", fetchOrders);
   }, []);
 
   if (orders.length === 0) {

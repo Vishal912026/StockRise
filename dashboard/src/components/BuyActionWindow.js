@@ -17,8 +17,8 @@ const BuyActionWindow = ({ uid, mode }) => {
 
   const handleOrder = async (e) => {
     e.preventDefault();
-    try {
-          await axios.post(
+      try {
+      await axios.post(
         `${API_URL}/newOrder`,
         {
           name: uid,
@@ -30,6 +30,7 @@ const BuyActionWindow = ({ uid, mode }) => {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         }
       );
+      window.dispatchEvent(new Event("orderPlaced"));
       generalContext.closeBuyWindow();
     } catch (err) {
       alert("Could not place the order. Please try again.");

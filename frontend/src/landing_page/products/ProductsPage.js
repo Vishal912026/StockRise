@@ -14,6 +14,8 @@ function ProductsPage() {
         productDesription="Our ultra-fast flagship trading platform with streaming market data, advanced charts, an elegant UI, and more. Enjoy the Rise Trade experience seamlessly on the web."
         tryDemo="/signup"
         learnMore="/signup"
+        googlePlay="#"
+        appStore="#"
       />
       <RightSection
         imageURL="/media/images/console.png"
@@ -27,6 +29,8 @@ function ProductsPage() {
         productDesription="Buy direct mutual funds online, commission-free, delivered directly to your Demat account."
         tryDemo="/signup"
         learnMore="/signup"
+        googlePlay="#"
+        appStore="#"
       />
       <RightSection
         imageURL="/media/images/kiteconnect.png"
@@ -40,9 +44,11 @@ function ProductsPage() {
         productDesription="An easy to grasp collection of stock market lessons with in-depth coverage and illustrations, broken down into bite-size cards."
         tryDemo="/signup"
         learnMore="/signup"
+        googlePlay="#"
+        appStore="#"
       />
-      <p className="text-center mt-5 mb-5">
-        Want to know more about our technology stack? See the section below.
+            <p className="text-center mt-5 mb-5">
+        See why StockRise offers a smooth, reliable trading experience.
       </p>
       <Universe />
     </>

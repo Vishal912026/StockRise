@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { DASHBOARD_URL, API_URL } from "../../config";
 
-function Signup() {
-  const [form, setForm] = useState({ name: "", email: "", password: "" });
+function Login() {
+  const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -15,14 +15,14 @@ function Signup() {
     setError("");
     setLoading(true);
     try {
-      const res = await fetch(`${API_URL}/signup`, {
+      const res = await fetch(`${API_URL}/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
       const data = await res.json();
       if (!res.ok) {
-        setError(data.error || "Signup failed");
+        setError(data.error || "Login failed");
         setLoading(false);
         return;
       }
@@ -39,19 +39,8 @@ function Signup() {
     <div className="container p-5 mb-5">
       <div className="row justify-content-center">
         <div className="col-md-5">
-          <h1 className="fs-2 mb-4 text-center">Open a StockRise account</h1>
+          <h1 className="fs-2 mb-4 text-center">Log in to StockRise</h1>
           <form onSubmit={handleSubmit}>
-            <div className="mb-3">
-              <label className="form-label">Full name</label>
-              <input
-                type="text"
-                name="name"
-                className="form-control"
-                value={form.name}
-                onChange={handleChange}
-                required
-              />
-            </div>
             <div className="mb-3">
               <label className="form-label">Email</label>
               <input
@@ -76,10 +65,10 @@ function Signup() {
             </div>
             {error && <p className="text-danger">{error}</p>}
             <button type="submit" className="btn btn-primary w-100" disabled={loading}>
-              {loading ? "Creating account..." : "Continue to dashboard"}
+              {loading ? "Logging in..." : "Log in"}
             </button>
             <p className="text-muted mt-3" style={{ fontSize: "13px" }}>
-              Already have an account? <Link to="/login">Log in</Link>
+              Don't have an account? <Link to="/signup">Sign up</Link>
             </p>
           </form>
         </div>
@@ -88,4 +77,4 @@ function Signup() {
   );
 }
 
-export default Signup;
+export default Login;

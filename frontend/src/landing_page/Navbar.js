@@ -4,6 +4,7 @@ import { DASHBOARD_URL } from "../config";
 
 const links = [
   { label: "Signup", to: "/signup" },
+  { label: "Login", to: "/login" },
   { label: "About", to: "/about" },
   { label: "Product", to: "/product" },
   { label: "Pricing", to: "/pricing" },

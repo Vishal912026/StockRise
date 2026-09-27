@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
+import { FRONTEND_URL } from "../config";
 
 const items = [
   { label: "Dashboard", path: "/" },
@@ -12,10 +13,25 @@ const items = [
 
 const Menu = () => {
   const location = useLocation();
+  const name = localStorage.getItem("name") || "User";
+  const initials = name
+    .split(" ")
+    .map((w) => w[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("name");
+    window.location.href = `${FRONTEND_URL}/login`;
+  };
 
   return (
     <div className="menu-container">
-      <img src="/logo.svg" style={{ width: "40px" }} alt="StockRise" />
+            <a href={FRONTEND_URL}>
+        <img src="/logo.svg" style={{ width: "40px" }} alt="StockRise" />
+      </a>
       <div className="menus">
         <ul>
           {items.map((item) => (
@@ -29,9 +45,14 @@ const Menu = () => {
           ))}
         </ul>
         <hr />
-        <div className="profile">
-          <div className="avatar">VP</div>
-          <p className="username">Vishal</p>
+        <div
+          className="profile"
+          onClick={handleLogout}
+          style={{ cursor: "pointer" }}
+          title="Click to logout"
+        >
+          <div className="avatar">{initials}</div>
+          <p className="username">{name}</p>
         </div>
       </div>
     </div>

@@ -27,7 +27,7 @@ function Hero() {
             </li>
             <li>
               <a href="#tickets">How to place your first order</a>
-            </li>
+            </li> 
           </ol>
         </div>
       </div>

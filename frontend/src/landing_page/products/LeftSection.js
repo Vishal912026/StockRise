@@ -7,6 +7,8 @@ function LeftSection({
   productDesription,
   tryDemo,
   learnMore,
+  googlePlay,
+  appStore,
 }) {
   return (
     <div className="container mt-5">
@@ -27,6 +29,18 @@ function LeftSection({
             >
               Learn More
             </Link>
+          </div>
+          <div className="mt-3">
+            <a href={googlePlay}>
+              <img src="/media/images/googlePlayBadge.svg" alt="Get it on Google Play" />
+            </a>
+            <a href={appStore}>
+              <img
+                src="/media/images/appstoreBadge.svg"
+                alt="Download on the App Store"
+                style={{ marginLeft: "50px" }}
+              />
+            </a>
           </div>
         </div>
       </div>

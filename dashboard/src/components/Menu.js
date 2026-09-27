@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FRONTEND_URL } from "../config";
 
@@ -13,6 +13,7 @@ const items = [
 
 const Menu = () => {
   const location = useLocation();
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const name = localStorage.getItem("name") || "User";
   const initials = name
     .split(" ")
@@ -29,7 +30,7 @@ const Menu = () => {
 
   return (
     <div className="menu-container">
-            <a href={FRONTEND_URL}>
+      <a href={FRONTEND_URL}>
         <img src="/logo.svg" style={{ width: "40px" }} alt="StockRise" />
       </a>
       <div className="menus">
@@ -45,14 +46,42 @@ const Menu = () => {
           ))}
         </ul>
         <hr />
-        <div
-          className="profile"
-          onClick={handleLogout}
-          style={{ cursor: "pointer" }}
-          title="Click to logout"
-        >
-          <div className="avatar">{initials}</div>
-          <p className="username">{name}</p>
+        <div style={{ position: "relative" }}>
+          <div
+            className="profile"
+            onClick={() => setDropdownOpen(!dropdownOpen)}
+            style={{ cursor: "pointer" }}
+          >
+            <div className="avatar">{initials}</div>
+            <p className="username">{name}</p>
+          </div>
+
+          {dropdownOpen && (
+            <div
+              style={{
+                position: "absolute",
+                right: 0,
+                top: "110%",
+                backgroundColor: "#fff",
+                boxShadow: "0 2px 10px rgba(0,0,0,0.15)",
+                borderRadius: "8px",
+                padding: "8px 0",
+                minWidth: "160px",
+                zIndex: 10,
+              }}
+            >
+              <div style={{ padding: "8px 16px", color: "#888", fontSize: "13px" }}>
+                {name}
+              </div>
+              <hr style={{ margin: "4px 0" }} />
+              <div
+                onClick={handleLogout}
+                style={{ padding: "8px 16px", cursor: "pointer", color: "#d9534f" }}
+              >
+                Logout
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

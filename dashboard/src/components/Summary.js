@@ -20,7 +20,7 @@ const Summary = () => {
   return (
     <>
       <div className="username">
-        <h6>Hi, Vishal!</h6>
+        <h6>Hi, {localStorage.getItem("name") || "there"}!</h6>
         <hr className="divider" />
       </div>
 

@@ -7,8 +7,10 @@ const Orders = () => {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(`${API_URL}/allOrders`)
+     axios
+      .get(`${API_URL}/allOrders`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      })
       .then((res) => setOrders(res.data))
       .catch((err) => console.error(err));
   }, []);

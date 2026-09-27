@@ -10,6 +10,7 @@ const { HoldingsModel } = require("./model/HoldingsModel");
 const { PositionsModel } = require("./model/PositionsModel");
 const { OrdersModel } = require("./model/OrdersModel");
 const { UserModel } = require("./model/UserModel");
+const authMiddleware = require("./middleware/auth");
 
 const PORT = process.env.PORT || 3002;
 const uri = process.env.MONGO_URL;
@@ -95,22 +96,22 @@ app.get("/allPositions", async (req, res) => {
   }
 });
 
-app.get("/allOrders", async (req, res) => {
+app.get("/allOrders", authMiddleware, async (req, res) => {
   try {
-    const orders = await OrdersModel.find({}).sort({ createdAt: -1 });
+    const orders = await OrdersModel.find({ userId: req.userId }).sort({ createdAt: -1 });
     res.json(orders);
   } catch (err) {
     res.status(500).json({ error: "Failed to fetch orders" });
   }
 });
 
-app.post("/newOrder", async (req, res) => {
+app.post("/newOrder", authMiddleware, async (req, res) => {
   try {
     const { name, qty, price, mode } = req.body;
     if (!name || !qty || !price || !mode) {
       return res.status(400).json({ error: "name, qty, price and mode are required" });
     }
-    const order = new OrdersModel({ name, qty, price, mode });
+    const order = new OrdersModel({ userId: req.userId, name, qty, price, mode });
     await order.save();
     res.json({ message: "Order saved!", order });
   } catch (err) {

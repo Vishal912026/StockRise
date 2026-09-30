@@ -24,19 +24,20 @@ StockRise lets users sign up, log in, and trade from a Zerodha-style dashboard �
 - 🌐 **Fully Deployed** – Live on Render (backend + 2 static frontends)
 
 ## Tech Stack
-
-**Frontend:** React.js, React Router
-**Backend:** Node.js, Express.js
-**Database:** MongoDB (Mongoose)
-**Auth:** JSON Web Tokens (JWT), bcryptjs
-**Deployment:** Render (Web Service + 2 Static Sites)
+- **Frontend:** React.js, React Router
+- **Backend:** Node.js, Express.js
+- **Database:** MongoDB (Mongoose)
+- **Auth:** JSON Web Tokens (JWT), bcryptjs
+- **Deployment:** Render (Web Service + 2 Static Sites)
 
 ## Project Structure
 
+```
 StockRise/
-├── backend/ # Express API — auth, orders, holdings, positions
-├── frontend/ # Public landing page, signup/login
-└── dashboard/ # Trading dashboard (post-login)
+├── backend/     # Express API: auth, orders, holdings, positions
+├── frontend/    # Public landing page, signup/login
+└── dashboard/   # Trading dashboard (post-login)
+```
 
 
 ## Getting Started (Local Setup)
